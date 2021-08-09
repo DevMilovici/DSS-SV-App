@@ -22,6 +22,12 @@ import java.security.KeyStore;
 public class App {
     public static void main(String[] args)
     {
+
+    }
+
+    // TODO: remove
+    public static void sendValidateRequestToApi()
+    {
         try
         {
             // Get signed document
