@@ -1,0 +1,91 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=NO, O=Green AS, OU=Green Certificate Authority, CN=Green Root CA
+        Validity
+            Not Before: Aug  9 09:06:13 2021 GMT
+            Not After : Aug  9 09:06:13 2031 GMT
+        Subject: C=NO, O=Green AS, OU=Green Certificate Authority, CN=Green Email CA
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:c8:e3:26:59:87:6f:dd:59:a7:d0:88:18:ad:eb:
+                    ac:c5:31:28:fd:c2:10:7d:ba:43:c7:91:e1:ba:c7:
+                    2c:ad:b4:5f:e2:48:0c:32:d9:f3:5c:fa:4d:62:d8:
+                    8d:25:8e:67:1c:a4:73:75:36:b4:80:27:d8:5c:14:
+                    d3:b7:e5:7d:77:f2:d0:e2:6a:6a:83:39:81:2f:db:
+                    5c:26:7b:22:1c:fc:57:f9:2d:42:5a:58:d1:7c:7d:
+                    b9:b6:ee:1d:ae:37:68:b3:04:be:1c:6a:db:da:ed:
+                    19:28:b8:af:d5:86:b9:a5:d1:47:b1:de:20:94:61:
+                    12:e5:d7:3f:9d:0a:07:a5:96:78:f6:16:37:a5:e9:
+                    2c:39:38:99:f6:67:e5:30:ad:11:5f:c9:db:c7:21:
+                    24:43:8f:c8:46:fc:59:d5:fa:12:4c:c0:30:99:0e:
+                    97:20:e5:10:24:54:ba:dc:bb:0c:80:5b:1a:53:ef:
+                    51:56:a2:77:8b:52:f9:36:8a:84:af:9d:b6:79:d6:
+                    d9:17:bc:3a:b2:27:fc:45:fe:b8:59:80:bf:08:5e:
+                    47:c2:9d:90:ed:ef:ce:d0:7d:59:0f:df:28:e9:1e:
+                    73:d2:ea:fe:d7:4c:21:b5:66:35:96:18:d2:f6:ca:
+                    f3:c7:5d:8b:bb:25:44:1b:48:ab:c1:e1:88:b3:1f:
+                    9e:91
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Certificate Sign, CRL Sign
+            X509v3 Basic Constraints: critical
+                CA:TRUE, pathlen:0
+            X509v3 Subject Key Identifier: 
+                DE:B3:F5:60:D9:C0:01:E4:3E:26:C9:5A:8F:14:F0:30:F8:BF:B1:7C
+            X509v3 Authority Key Identifier: 
+                keyid:E5:93:44:2B:58:DC:FE:D2:49:CE:96:EF:02:CF:89:EA:BA:44:E8:9F
+
+            Authority Information Access: 
+                CA Issuers - URI:http://green.no/ca/root-ca.cer
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://green.no/ca/root-ca.crl
+
+    Signature Algorithm: sha1WithRSAEncryption
+         04:f4:93:89:b2:12:36:96:40:80:dc:99:85:43:93:ff:1c:94:
+         00:b8:34:8b:a5:82:fd:da:19:39:16:ac:eb:0d:d0:f1:e0:e0:
+         d1:7d:90:e8:93:34:86:93:73:8b:9c:53:89:ef:7f:dc:73:65:
+         fb:fd:57:35:3c:33:ac:d9:86:c0:20:a9:51:02:8e:c5:eb:5f:
+         1b:d7:c3:4f:fe:2a:3e:b1:61:15:18:7d:22:34:ac:d0:f7:ce:
+         4d:c7:24:c8:05:7e:d2:9c:3a:55:24:eb:3d:52:63:32:1f:3f:
+         a4:ab:00:33:31:ca:67:9e:ed:46:40:a6:03:78:d8:16:c2:40:
+         20:54:df:26:c1:c8:12:b4:4e:39:92:5d:fd:f1:28:e9:cb:c3:
+         f8:ac:23:77:bf:00:e7:54:12:47:6e:6b:7d:ff:4e:f3:f9:46:
+         7e:f6:26:4e:ce:e9:a3:82:74:af:6f:68:9c:45:ca:a7:fe:c6:
+         66:bc:59:af:ce:b3:d4:23:87:19:cc:8f:db:77:25:39:86:79:
+         c2:88:fc:0d:24:46:ff:61:91:9f:46:c3:80:1a:5c:07:5e:a4:
+         42:b1:32:00:12:e2:5b:14:b6:6b:3b:a2:b2:18:47:c3:7e:1a:
+         85:00:fe:7e:88:34:89:11:2a:03:e2:3b:60:85:f7:40:c3:42:
+         a2:04:03:f1
+-----BEGIN CERTIFICATE-----
+MIIEDTCCAvWgAwIBAgIBAjANBgkqhkiG9w0BAQUFADBeMQswCQYDVQQGEwJOTzER
+MA8GA1UECgwIR3JlZW4gQVMxJDAiBgNVBAsMG0dyZWVuIENlcnRpZmljYXRlIEF1
+dGhvcml0eTEWMBQGA1UEAwwNR3JlZW4gUm9vdCBDQTAeFw0yMTA4MDkwOTA2MTNa
+Fw0zMTA4MDkwOTA2MTNaMF8xCzAJBgNVBAYTAk5PMREwDwYDVQQKDAhHcmVlbiBB
+UzEkMCIGA1UECwwbR3JlZW4gQ2VydGlmaWNhdGUgQXV0aG9yaXR5MRcwFQYDVQQD
+DA5HcmVlbiBFbWFpbCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+AMjjJlmHb91Zp9CIGK3rrMUxKP3CEH26Q8eR4brHLK20X+JIDDLZ81z6TWLYjSWO
+Zxykc3U2tIAn2FwU07flfXfy0OJqaoM5gS/bXCZ7Ihz8V/ktQlpY0Xx9ubbuHa43
+aLMEvhxq29rtGSi4r9WGuaXRR7HeIJRhEuXXP50KB6WWePYWN6XpLDk4mfZn5TCt
+EV/J28chJEOPyEb8WdX6EkzAMJkOlyDlECRUuty7DIBbGlPvUVaid4tS+TaKhK+d
+tnnW2Re8OrIn/EX+uFmAvwheR8KdkO3vztB9WQ/fKOkec9Lq/tdMIbVmNZYY0vbK
+88ddi7slRBtIq8HhiLMfnpECAwEAAaOB1DCB0TAOBgNVHQ8BAf8EBAMCAQYwEgYD
+VR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQU3rP1YNnAAeQ+JslajxTwMPi/sXww
+HwYDVR0jBBgwFoAU5ZNEK1jc/tJJzpbvAs+J6rpE6J8wOgYIKwYBBQUHAQEELjAs
+MCoGCCsGAQUFBzAChh5odHRwOi8vZ3JlZW4ubm8vY2Evcm9vdC1jYS5jZXIwLwYD
+VR0fBCgwJjAkoCKgIIYeaHR0cDovL2dyZWVuLm5vL2NhL3Jvb3QtY2EuY3JsMA0G
+CSqGSIb3DQEBBQUAA4IBAQAE9JOJshI2lkCA3JmFQ5P/HJQAuDSLpYL92hk5Fqzr
+DdDx4ODRfZDokzSGk3OLnFOJ73/cc2X7/Vc1PDOs2YbAIKlRAo7F618b18NP/io+
+sWEVGH0iNKzQ985NxyTIBX7SnDpVJOs9UmMyHz+kqwAzMcpnnu1GQKYDeNgWwkAg
+VN8mwcgStE45kl398Sjpy8P4rCN3vwDnVBJHbmt9/07z+UZ+9iZOzumjgnSvb2ic
+Rcqn/sZmvFmvzrPUI4cZzI/bdyU5hnnCiPwNJEb/YZGfRsOAGlwHXqRCsTIAEuJb
+FLZrO6KyGEfDfhqFAP5+iDSJESoD4jtghfdAw0KiBAPx
+-----END CERTIFICATE-----
