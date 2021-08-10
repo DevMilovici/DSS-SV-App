@@ -6,6 +6,7 @@ import eu.europa.esig.dss.enumerations.SignaturePackaging;
 import eu.europa.esig.dss.model.DSSDocument;
 import eu.europa.esig.dss.token.Pkcs12SignatureToken;
 import eu.europa.esig.dss.token.SignatureTokenConnection;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,8 +15,17 @@ import java.security.KeyStore;
 import static org.junit.Assert.assertNotNull;
 
 public class SignatureExecutorTest {
+
+    private SignatureTokenConnection _signatureToken;
+
+    @Before
+    public void InitializeComponents() throws Exception {
+        // Set the signature token
+        _signatureToken = new Pkcs12SignatureToken("src/main/resources/fred_keystore.p12", new KeyStore.PasswordProtection("1234".toCharArray()));
+    }
+
     @Test
-    public void TestSignPAdES()
+    public void TestSignPAdESBaselineB()
     {
         try
         {
@@ -29,10 +39,8 @@ public class SignatureExecutorTest {
             signatureExecutor.SetSignaturePackaging(SignaturePackaging.ENVELOPED);
             // Set the digest algorithm
             signatureExecutor.SetSignatureDigestAlgorithm(DigestAlgorithm.SHA256);
-            // Set the signature token
-            SignatureTokenConnection signatureToken =
-                    new Pkcs12SignatureToken("src/main/resources/fred_keystore.p12", new KeyStore.PasswordProtection("1234".toCharArray()));
-            signatureExecutor.SetSignatureToken(signatureToken);
+
+            signatureExecutor.SetSignatureToken(_signatureToken);
             // Set the private key
             signatureExecutor.SetSignaturePrivateKey(0);
             // Sign the document
