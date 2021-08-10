@@ -25,7 +25,7 @@ public class SignatureExecutorTest {
     }
 
     @Test
-    public void TestSignPAdESBaselineB()
+    public void SignPAdESBaselineB_Test()
     {
         try
         {
