@@ -29,10 +29,12 @@ public class SignatureExecutorTest {
     {
         try
         {
+            String inputFilePath = "src/main/resources/doc.pdf";
+            String outputFilePath = "src/main/resources/doc-signedPAdESB.pdf";
             SignatureExecutor signatureExecutor = new SignatureExecutor();
 
             // Set the file to sign
-            signatureExecutor.SetFileToSign("src/main/resources/doc.pdf");
+            signatureExecutor.SetFileToSign(inputFilePath);
             // Set the format
             signatureExecutor.SetSignatureLevel(SignatureLevel.PAdES_BASELINE_B);
             // Set the signature packaging
@@ -47,6 +49,8 @@ public class SignatureExecutorTest {
             signatureExecutor.SignFile();
             // Get the signed document
             DSSDocument signedDocument = signatureExecutor.GetSignedDocument();
+
+            signedDocument.save(outputFilePath);
 
             assertNotNull(signedDocument);
         }

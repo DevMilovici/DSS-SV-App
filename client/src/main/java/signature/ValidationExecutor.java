@@ -7,6 +7,7 @@ import eu.europa.esig.dss.diagnostic.DiagnosticDataFacade;
 import eu.europa.esig.dss.enumerations.DigestAlgorithm;
 import eu.europa.esig.dss.model.DSSDocument;
 import eu.europa.esig.dss.model.FileDocument;
+import eu.europa.esig.dss.model.x509.CertificateToken;
 import eu.europa.esig.dss.service.SecureRandomNonceSource;
 import eu.europa.esig.dss.service.crl.OnlineCRLSource;
 import eu.europa.esig.dss.service.http.commons.CommonsDataLoader;
@@ -16,6 +17,7 @@ import eu.europa.esig.dss.simplereport.SimpleReport;
 import eu.europa.esig.dss.simplereport.SimpleReportFacade;
 import eu.europa.esig.dss.spi.client.http.Protocol;
 import eu.europa.esig.dss.spi.x509.CertificateSource;
+import eu.europa.esig.dss.spi.x509.CommonCertificateSource;
 import eu.europa.esig.dss.spi.x509.CommonTrustedCertificateSource;
 import eu.europa.esig.dss.spi.x509.KeyStoreCertificateSource;
 import eu.europa.esig.dss.validation.CertificateVerifier;
@@ -24,6 +26,10 @@ import eu.europa.esig.dss.validation.SignedDocumentValidator;
 import eu.europa.esig.dss.validation.reports.Reports;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 
 /**
  * Class for validating different types of signatures.
@@ -107,7 +113,7 @@ public class ValidationExecutor {
 
     // TODO: See addAdjunctCertSources() for _certificateVerifier
     /**
-     * Adds trusted certificates
+     * Adds certificates which are trusted for the validation process
      * @param certificateKeyStoreSourcePath e.g.: chain.p12
      * @param keyStoreSourceType e.g.: "PKCS12"
      * @param keyStorePassword Password of the key store
@@ -131,6 +137,36 @@ public class ValidationExecutor {
         {
             throw new Exception("EXCEPTION from AddTrustedCertificateSource(): " + exception.getMessage());
         }
+    }
+
+    /**
+     * Adds trusted anchor
+     * @param certificatePath
+     */
+    public void AddTrustedCertificate(String certificatePath) {
+
+        try
+        {
+            CommonCertificateSource commonCertificateSource = new CommonCertificateSource();
+            CommonTrustedCertificateSource trustedCertificateSource = new CommonTrustedCertificateSource();
+
+            CertificateFactory certificateFactory = CertificateFactory.getInstance("X509");
+            File certificateFile = new File(certificatePath);
+            FileInputStream certificateFileInputStream = new FileInputStream(certificateFile);
+            X509Certificate certificate = (X509Certificate)certificateFactory.generateCertificate(certificateFileInputStream);
+
+            CertificateToken certificateToken = new CertificateToken(certificate);
+            commonCertificateSource.addCertificate(certificateToken);
+
+            trustedCertificateSource.importAsTrusted(commonCertificateSource);
+
+            _certificateVerifier.addTrustedCertSources(trustedCertificateSource);
+        }
+        catch (Exception exception)
+        {
+            System.out.println("EXCEPTION from AddTrustedCertificate(): " + exception.getMessage());
+        }
+
 
     }
 
