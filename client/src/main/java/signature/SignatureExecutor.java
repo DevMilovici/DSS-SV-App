@@ -168,7 +168,37 @@ public class SignatureExecutor {
         }
         catch (Exception exception)
         {
-            throw new Exception("SignFile(): " + exception.getMessage());
+            throw new Exception("EXCEPTION from SignFile(): " + exception.getMessage());
+        }
+    }
+
+    public void ExtendSignature() throws Exception {
+        try
+        {
+            switch (_signatureLevel)
+            {
+                case CAdES_BASELINE_T:
+                case CAdES_BASELINE_LT:
+                case CAdES_BASELINE_LTA:
+                    extendCAdES();
+                    break;
+                case PAdES_BASELINE_T:
+                case PAdES_BASELINE_LT:
+                case PAdES_BASELINE_LTA:
+                    extendPAdES();
+                    break;
+                case XAdES_BASELINE_T:
+                case XAdES_BASELINE_LT:
+                case XAdES_BASELINE_LTA:
+                    extendXAdES();
+                    break;
+                default:
+                    throw new Exception("unsupported signature level.");
+            }
+        }
+        catch (Exception exception)
+        {
+            throw new Exception("EXCEPTION from SignFile(): " + exception.getMessage());
         }
     }
 
@@ -221,6 +251,10 @@ public class SignatureExecutor {
         _signedDocument = cadesService.signDocument(_documentToSign, cadesParameters, signatureValue);
     }
 
+    private void extendCAdES() {
+        // TODO: implement
+    }
+
     /**
      * Signs the file in PAdES format
      */
@@ -256,6 +290,37 @@ public class SignatureExecutor {
 
         // We invoke the padesService to sign the document with the signature value obtained in the previous step.
         _signedDocument = padesService.signDocument(_documentToSign, padesParameters, signatureValue);
+    }
+
+    private void extendPAdES()
+    {
+        // Prepare parameters for the PAdES signature
+        PAdESSignatureParameters padesParameters = new PAdESSignatureParameters();
+
+        // Set the signature level (-T, -LT, -LTA)
+        padesParameters.setSignatureLevel(_signatureLevel);
+
+        // We set the digest algorithm to use with the signature algorithm. You must use the
+        // same parameter when you invoke the method sign on the token. The default value is SHA256
+        padesParameters.setDigestAlgorithm(_digestAlgorithm);
+
+        // We set the signing certificate
+        padesParameters.setSigningCertificate(_privateKey.getCertificate());
+
+        // We set the certificate chain
+        padesParameters.setCertificateChain(_privateKey.getCertificateChain());
+
+        // Create common certificate verifier
+        CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();
+
+        // Create PAdESService for signature
+        PAdESService padesService = new PAdESService(commonCertificateVerifier);
+
+        // Sets the timestamp source
+        padesService.setTspSource(_onlineTSPSource);
+
+        // Extend the document signature
+        _signedDocument = padesService.extendDocument(_documentToSign, padesParameters);
     }
 
     /**
@@ -295,5 +360,7 @@ public class SignatureExecutor {
         _signedDocument = xadesService.signDocument(_documentToSign, xadesParameters, signatureValue);
     }
 
-
+    private void extendXAdES() {
+        // TODO: implement
+    }
 }

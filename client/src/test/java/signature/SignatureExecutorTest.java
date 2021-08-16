@@ -41,7 +41,7 @@ public class SignatureExecutorTest {
             signatureExecutor.SetSignaturePackaging(SignaturePackaging.ENVELOPED);
             // Set the digest algorithm
             signatureExecutor.SetSignatureDigestAlgorithm(DigestAlgorithm.SHA256);
-
+            // Set the signature token
             signatureExecutor.SetSignatureToken(_signatureToken);
             // Set the private key
             signatureExecutor.SetSignaturePrivateKey(0);
@@ -54,9 +54,48 @@ public class SignatureExecutorTest {
 
             assertNotNull(signedDocument);
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
+        }
+    }
+
+    @Test
+    public void ExtendPAdESBToPAdEST()
+    {
+        try
+        {
+            String inputFilePath = "src/main/resources/doc-signedPAdESB.pdf";
+            String outputFilePath = "src/main/resources/doc-signedPAdEST.pdf";
+            String tspServerUrl = "http://dss.nowina.lu/pki-factory/tsa/good-tsa";
+
+            SignatureExecutor signatureExecutor = new SignatureExecutor();
+
+            // Set the file to extend signature
+            signatureExecutor.SetFileToSign(inputFilePath);
+            // Set the format
+            signatureExecutor.SetSignatureLevel(SignatureLevel.PAdES_BASELINE_T);
+            // Set the timestamp server URL
+            signatureExecutor.SetTimestampSource(tspServerUrl);
+            // Set the signature packaging
+            signatureExecutor.SetSignaturePackaging(SignaturePackaging.ENVELOPED);
+            // Set the digest algorithm
+            signatureExecutor.SetSignatureDigestAlgorithm(DigestAlgorithm.SHA256);
+            // Set the signature token
+            signatureExecutor.SetSignatureToken(_signatureToken);
+            // Set the private key
+            signatureExecutor.SetSignaturePrivateKey(0);
+            // Extend the document
+            signatureExecutor.ExtendSignature();
+            // Get the signed (augmented) document
+            DSSDocument extendedDocument = signatureExecutor.GetSignedDocument();
+
+            extendedDocument.save(outputFilePath);
+
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
         }
     }
 

@@ -166,8 +166,32 @@ public class ValidationExecutor {
         {
             System.out.println("EXCEPTION from AddTrustedCertificate(): " + exception.getMessage());
         }
+    }
 
+    /**
+     * Adds missing certificates which may be missing
+     * @param certificatePath
+     */
+    public void AddAdjacentCertificate(String certificatePath) {
 
+        try
+        {
+            CommonCertificateSource commonCertificateSource = new CommonCertificateSource();
+
+            CertificateFactory certificateFactory = CertificateFactory.getInstance("X509");
+            File certificateFile = new File(certificatePath);
+            FileInputStream certificateFileInputStream = new FileInputStream(certificateFile);
+            X509Certificate certificate = (X509Certificate)certificateFactory.generateCertificate(certificateFileInputStream);
+            CertificateToken certificateToken = new CertificateToken(certificate);
+
+            commonCertificateSource.addCertificate(certificateToken);
+
+            _certificateVerifier.addAdjunctCertSources(commonCertificateSource);
+        }
+        catch (Exception exception)
+        {
+            System.out.println("EXCEPTION from AddTrustedCertificate(): " + exception.getMessage());
+        }
     }
 
     public void ValidateDocument()

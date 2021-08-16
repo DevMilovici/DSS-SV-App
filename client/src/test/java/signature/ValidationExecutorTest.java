@@ -24,10 +24,10 @@ public class ValidationExecutorTest {
             String inputSignedFilePath = "src/main/resources/doc-signedPAdESB.pdf";
 
             _validationExecutor.SetFileToValidate(inputSignedFilePath);
-            //_validationExecutor.AddTrustedCertificateSource("src/main/resources/fred_keystore.p12", "PKCS12", "1234");
+            _validationExecutor.AddTrustedCertificateSource("src/main/resources/fred_keystore.p12", "PKCS12", "1234");
             _validationExecutor.AddTrustedCertificate("src/main/resources/certificates/root-ca.crt");
             _validationExecutor.AddTrustedCertificate("src/main/resources/certificates/email-ca.crt");
-            _validationExecutor.AddTrustedCertificate("src/main/resources/certificates/fred.crt");
+            _validationExecutor.AddAdjacentCertificate("src/main/resources/certificates/fred.crt");
             _validationExecutor.ValidateDocument();
 
             DiagnosticData diagnosticData = _validationExecutor.GetDiagnosticData();
